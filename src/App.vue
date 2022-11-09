@@ -1,14 +1,18 @@
 <template>
-  <HomeModule></HomeModule>
+  <HomeModuleTop></HomeModuleTop>
+  <HomeModuleContent></HomeModuleContent>
 </template>
 
 <script>
-import HomeModule from './components/HomeModule.vue'
+import HomeModuleTop from './components/HomeModuleTop.vue'
+import HomeModuleContent from './components/HomeModuleContent.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HomeModule
+    HomeModuleTop,
+    HomeModuleContent,
   }
 }
 </script>

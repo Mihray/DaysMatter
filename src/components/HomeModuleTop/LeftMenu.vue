@@ -1,40 +1,33 @@
 <template>
-    <div class="square">
         <div class="menu-line">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
 </template>
 <script>
 
 </script>
 <style scoped>
-.square{
-    /* width:100vmin;
-    height:15vmax; */
-    width:100vw;
-    height:10vh;
-    background-color: rgb(53, 162, 189);
-    position: absolute;
-}
 .menu-line{
     width: 4vh;
     height:4vh ;
     /* background-color: brown; */
     margin-top:4vh;
-    margin-left: 3vh;
-    /* box-sizing: border-box; */
+    /* margin-left: 3vh; */
     display: flex;
     flex-direction: column;
     /* align-content:space-between; */
+    /* 把剩下的空间均分 */
     justify-content:space-between;
+    flex-grow: 1;
+    padding-left: 3vh;
+    box-sizing: border-box;
 }
 .menu-line div{
     /* box-sizing: inherit; */
     width: 4vh;
-    height:0.9vh ;
+    height:0.9vh;
     background-color: white;
     /* align-content:space-between; */
 }
