@@ -1,11 +1,13 @@
 <template>
-  <HomeModuleTop></HomeModuleTop>
-  <HomeModuleContent></HomeModuleContent>
+  <HomeModuleTop @addDayBtn="addDayBtn" v-if="homeShow"></HomeModuleTop>
+  <HomeModuleContent v-if="homeShow"></HomeModuleContent>
+  <add-day v-if="addDayShow"></add-day>
 </template>
 
 <script>
 import HomeModuleTop from './components/HomeModuleTop.vue'
 import HomeModuleContent from './components/HomeModuleContent.vue'
+import AddDay from './components/AddDay.vue'
 
 
 export default {
@@ -13,6 +15,20 @@ export default {
   components: {
     HomeModuleTop,
     HomeModuleContent,
+    AddDay
+  },
+  data(){
+    return{
+            addDayShow:'',
+            homeShow:true,
+    }
+  },
+  methods:{
+    addDayBtn(){
+      console.log('传到APPmodule了');
+      this.addDayShow=true
+      this.homeShow=false
+    }
   }
 }
 </script>

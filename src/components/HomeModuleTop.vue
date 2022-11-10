@@ -1,9 +1,9 @@
 <template>
     <div class="square">
-        <LeftMenu></LeftMenu>
-        <span class="span-title">倒数日</span>
-        <TileBut></TileBut>
-        <AddBut></AddBut>
+            <LeftMenu></LeftMenu>
+            <span class="span-title">倒数日</span>
+            <TileBut></TileBut>
+            <AddBut @addDayBtn="addDayBtn"></AddBut>
     </div>
 </template>
 <script>
@@ -16,6 +16,17 @@ export default{
         LeftMenu,
         TileBut,
         AddBut
+    },
+    data(){
+        return{
+
+        }
+    },
+    methods:{
+        addDayBtn(){
+            console.log('传到TopModule了')
+            this.$emit('addDayBtn')
+        }
     }
 }
 </script>
@@ -23,6 +34,13 @@ export default{
 .square{
     /* width:100vmin;
     height:15vmax; */
+    width:100vw;
+    height:10vh;
+    background-color: rgb(53, 162, 189);
+    position: absolute;
+    display: flex;
+}
+.Hometop{
     width:100vw;
     height:10vh;
     background-color: rgb(53, 162, 189);

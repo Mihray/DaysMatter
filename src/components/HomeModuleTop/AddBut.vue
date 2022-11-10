@@ -1,6 +1,6 @@
 <template>
     <div class="addBut">
-        <div class="addBut2"> 
+        <div class="addBut2" @click="addDay"> 
             <div class="across"></div>
             <div class="vertical"></div>
         </div>
@@ -8,7 +8,18 @@
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            // addDayShow:true,
+            // homeShow:false,
+        }
+    },
+    methods:{
+        addDay(){
+            console.log('添加到时日')
+            this.$emit('addDayBtn')
+        }
+    }
 }
 </script>
 <style scoped>
