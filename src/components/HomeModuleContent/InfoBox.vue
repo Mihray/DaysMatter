@@ -1,13 +1,15 @@
 <template>
     <div class="infoBox">
-        <div class="infoTop">周末还有</div>
-        <div class="day">40<span style="font-size:12vh">天</span></div>
-        <div class="date">目标日:2022年11月12日</div>
+        <div class="infoTop">{{eventBox.name}}</div>
+        <div class="day">{{eventBox.days}}<span style="font-size:12vh">天</span></div>
+        <div class="date">目标日:{{eventBox.date}}</div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:{
+            eventBox:Array,
+         } ,
 }
 </script>
 <style scoped>

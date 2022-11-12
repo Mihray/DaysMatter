@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <InfoBox></InfoBox>
-        <day-list></day-list>
+        <InfoBox :eventBox="eventHome"></InfoBox>
+        <day-list :eventList="eventHome"></day-list>
     </div>
 </template>
 
@@ -14,7 +14,11 @@ export default {
   components: { 
     InfoBox,
     DayList ,
-},  
+}, 
+
+    props:{
+        eventHome:Array,
+    } ,
 }
 </script>
 <style scoped>

@@ -1,16 +1,20 @@
 <template>
     <div class="dayList">
         <ul>
-            <li>
-                星期一
-                <div></div>
+            <li v-for="item in eventList" :key="item">{{item.name}}天
+                <div>{{item.days}}</div>
             </li>
         </ul>
+        <!-- <div v-for="i in eventList" :key="i">
+            你好{{i}}
+        </div> -->
     </div>
 </template>
 <script>
 export default {
-    
+    props:{
+            eventList:Array,
+         } ,
 }
 </script>
 <style scoped>

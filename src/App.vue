@@ -1,7 +1,7 @@
 <template>
   <HomeModuleTop @addDayBtn="addDayBtn" v-if="homeShow"></HomeModuleTop>
-  <HomeModuleContent v-if="homeShow"></HomeModuleContent>
-  <add-day v-if="addDayShow"></add-day>
+  <HomeModuleContent v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
+  <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp"></add-day>
 </template>
 
 <script>
@@ -21,6 +21,7 @@ export default {
     return{
             addDayShow:'',
             homeShow:true,
+            eventApp:[],
     }
   },
   methods:{
@@ -28,6 +29,20 @@ export default {
       console.log('传到APPmodule了');
       this.addDayShow=true
       this.homeShow=false
+    },
+    returnHome(){
+      console.log('returnHome触发了')
+      this.addDayShow=false
+      this.homeShow=true
+    },
+    subDayApp(param){
+      console.log('submitDay触发了')
+      const currentEventList = this.eventApp;
+      currentEventList.push(param);
+      this.eventApp= currentEventList;
+      // this.eventApp.push(param)
+      console.log('App的event:'+this.eventApp)
+      console.log('App的event的name:'+this.eventApp.name)
     }
   }
 }

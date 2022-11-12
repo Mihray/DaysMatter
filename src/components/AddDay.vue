@@ -1,7 +1,7 @@
 <template>
     <!-- <link rel="stylesheet" href="../assets/icomoon/style.css"> -->
     <div class="square">
-        <div class="arrow"> 
+        <div class="arrow" @click="returnHome"> 
             <div class="arrowhead"></div>
             <div class="arrowbody"></div>
         </div>
@@ -10,16 +10,16 @@
     <div class="inputBox">
         <div class="eventName">
             <span class="icon-paste"></span>
-            <input   placeholder="输入事件名称">
+            <input  placeholder="输入事件名称" v-model="event.name">
         </div>
         <div class="date"> 
             <span class="icon-calendar"></span> 
-            <input type="date"   placeholder="目标日">
+            <input type="date" v-model="event.date">
         </div>
         <div class="kind"> 
             <span class="icon-book"></span> 
             <div>倒数本
-                <select id="kindInput">
+                <select id="kindInput" v-model="event.kindVar">
                     <option>生活</option>
                     <option>工作</option>
                     <option>纪念日</option>
@@ -29,16 +29,17 @@
         <div class="overHead"> 
             <span class="icon-upload"></span>
             <div>顶置
-                <div class="switch"> 
-                    <div class="down"></div>
-                    <div class="circle"></div>
+                <div class="switch"  @click="overHeadClick"> 
+                    <div class="down-on" :class="{'down-off':isActive}"></div>
+                    <div class="circle-on" v-if="on"></div>
+                    <div class="circle-off" v-if="off"></div>
                 </div>
             </div>
         </div>
         <div class="repitition"> 
             <span class="icon-spinner11"></span>
             <div>重复
-                <select>
+                <select v-model="event.repititionVar">
                     <option>不重复</option>
                     <option>每周</option>
                     <option>每月</option>
@@ -46,12 +47,64 @@
                 </select>
             </div>
         </div>
-        <button class="but">保存</button>
+        <button class="but" @click="subDay">保存</button>
     </div>
 </template>
 <script> 
 export default {
-    
+    data(){
+        return {
+            // switchStyle:'margin-left: -3vh',
+            on:true,
+            off:false,
+            isActive:false,
+            date:'',
+            event:{
+                name:'',
+                date:'',
+                kindVar:'',
+                overHeadVar:true,
+                repititionVar:'',
+                days:'',
+            }
+        }
+    },
+    methods:{
+        overHeadClick(){
+            // 因为switchStyle 不是双向绑定所以，它改变了值之后获取不了点击之后的值，所以这样实现无效
+            // if(this.switchStyle==='margin-left: 3vh'){
+            //     this.switchStyle==='margin-left: -3vh'
+            // }
+            // if(this.switchStyle==='margin-left:-3vh'){
+            //     this.switchStyle==='margin-left: 3vh'
+            // }
+            // this.switchStyle='margin-left: 3vh'
+            // this.on=false
+            // this.switchStyle='margin-left: 3vh'
+            this.on=!this.on;
+            this.off=!this.off;
+            this.isActive=!this.isActive;
+            this.event.overHeadVar=!this.isActive;
+         },
+         returnHome(){
+            this.$emit('returnHome')
+         },
+         subDay(){
+            const aData = new Date();
+            console.log('aData是'+aData)
+            const Milliseconds1=aData.valueOf()
+            console.log('Milliseconds1 是'+Milliseconds1)
+            //计算用户输入的日期的utc时间（毫秒数）
+            //(new Date(Number('2022-11-12'.slice(0,4)),Number('2022-11-12'.slice(5,7))-1,Number('2022-11-12'.slice(8,10)))).valueOf()
+            const Milliseconds2=new Date(Number(this.event.date.slice(0,4)),Number(this.event.date.slice(5,7)-1),Number(this.event.date.slice(8,10))).valueOf()
+            console.log('Milliseconds2 是'+Milliseconds2)
+            this.event.days=Math.ceil((Milliseconds2-Milliseconds1)/86400000)
+            console.log(this.event.days)
+            console.log(this.event)
+            this.$emit('subDay',this.event)
+            this.$emit('returnHome')
+         }
+    }
 }
 </script>
 <style scoped>
@@ -154,38 +207,55 @@ export default {
     justify-content: space-between;
 }
 .kind div select{
-    width:15vw;
+    width:17vw;
     height: 6vh;
     outline: none;
     background-color: rgb(131, 222, 225);
     border: none;
 }
 .repitition div select{
-    width:15vw;
+    width:17vw;
     height: 6vh;
     outline: none;
     background-color: rgb(131, 222, 225);
     border: none;
 }
 .switch{
-    width:4vh;
+    width:15vh;
     height:4vh;
-    background-color: brown;
+    /* background-color: brown; */
     display:flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items:center;
 }
-.down{
-    width:3vh;
+.down-on{
+    width:4vh;
     height:1.5vh;
-    background-color: white;
+    background-color: rgb(214, 243, 242);
     border-radius:0.4vh;
+    position: absolute;
 }
-.circle{
+.down-off{
+    width:4vh;
+    height:1.5vh;
+    background-color: rgb(150, 150, 158);
+    border-radius:0.4vh;
+    position: absolute;
+}
+.circle-on{
     width:3vh;
     height:3vh;
-    background-color: blue;
+    background-color: rgb(100, 189, 188);
     border-radius:50%;
-    margin-left: 1.5vh;
-}
+    z-index: 1;
+    margin-left: -3vh;
+    }
+    .circle-off{
+    width:3vh;
+    height:3vh;
+    background-color: rgb(113, 113, 129);
+    border-radius:50%;
+    z-index: 1;
+    margin-left: 3vh;
+    }
 </style>
