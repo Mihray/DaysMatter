@@ -1,14 +1,17 @@
 <template>
     <div class="infoBox">
-        <div class="infoTop">{{eventBox.name}}</div>
-        <div class="day">{{eventBox.days}}<span style="font-size:12vh">天</span></div>
-        <div class="date">目标日:{{eventBox.date}}</div>
+        <div class="infoTop">{{clickEventlist.name}}</div>
+        <div class="day">{{clickEventlist.days}}<span style="font-size:12vh">天</span></div>
+        <div class="date">目标日:{{clickEventlist.date}}</div>
+        <!-- <div class="infoTop">你好</div>
+        <div class="day">你好<span style="font-size:12vh">天</span></div>
+        <div class="date">目标日:</div> -->
     </div>
 </template>
 <script>
 export default {
     props:{
-            eventBox:Array,
+        clickEventlist:Object,
          } ,
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <InfoBox :eventBox="eventHome"></InfoBox>
-        <day-list :eventList="eventHome"></day-list>
+        <InfoBox :clickEventlist="ClickEventlist"></InfoBox>
+        <day-list :eventList="eventHome" @ShowInfo="showInfo"></day-list>
     </div>
 </template>
 
@@ -15,10 +15,23 @@ export default {
     InfoBox,
     DayList ,
 }, 
-
+data(){
+    return{
+        ClickEventlist:{}
+    }
+}
+,
     props:{
         eventHome:Array,
-    } ,
+    },
+    methods:{
+        showInfo(param1){
+            console.log('list被点击传来的东西:'+param1)
+            this.ClickEventlist=param1;
+            console.log('ClickEventlist:'+this.ClickEventlist)
+            console.log('ClickEventlist的属性:'+this.ClickEventlist.name)
+        }
+    }
 }
 </script>
 <style scoped>
