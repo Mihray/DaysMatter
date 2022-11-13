@@ -2,10 +2,12 @@
     <div class="content">
         <InfoBox :clickEventlist="ClickEventlist"></InfoBox>
         <day-list :eventList="eventHome" @ShowInfo="showInfo"></day-list>
+        <bottom-vue></bottom-vue>
     </div>
 </template>
 
 <script>
+import BottomVue from './HomeModuleContent/BottomVue.vue'
 import DayList from './HomeModuleContent/DayList.vue'
 import InfoBox from './HomeModuleContent/InfoBox.vue'
 
@@ -13,7 +15,8 @@ import InfoBox from './HomeModuleContent/InfoBox.vue'
 export default {
   components: { 
     InfoBox,
-    DayList ,
+    DayList,
+    BottomVue ,
 }, 
 data(){
     return{
@@ -36,9 +39,11 @@ data(){
 </script>
 <style scoped>
 .content{
+    height:100vh;
     display: flex;
     flex-direction: column;
     /* 水平居中 */
     align-items: center;
+    justify-content: space-between;
 }
 </style>

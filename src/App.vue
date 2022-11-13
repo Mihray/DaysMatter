@@ -2,12 +2,14 @@
   <HomeModuleTop @addDayBtn="addDayBtn" v-if="homeShow"></HomeModuleTop>
   <HomeModuleContent v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp"></add-day>
+  <!-- <HomeModuleBottom></HomeModuleBottom> -->
 </template>
 
 <script>
 import HomeModuleTop from './components/HomeModuleTop.vue'
 import HomeModuleContent from './components/HomeModuleContent.vue'
 import AddDay from './components/AddDay.vue'
+// import HomeModuleBottom from './components/HomeModuleBottom.vue'
 
 
 export default {
@@ -15,7 +17,8 @@ export default {
   components: {
     HomeModuleTop,
     HomeModuleContent,
-    AddDay
+    AddDay,
+    // HomeModuleBottom,
   },
   data(){
     return{
