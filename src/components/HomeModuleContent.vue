@@ -2,7 +2,7 @@
     <div class="content">
         <InfoBox :clickEventlist="ClickEventlist"></InfoBox>
         <day-list :eventList="eventHome" @ShowInfo="showInfo"></day-list>
-        <bottom-vue></bottom-vue>
+        <bottom-vue @guanliClick="guanliClick($emit('guanliClick'))"></bottom-vue>
     </div>
 </template>
 
@@ -33,7 +33,7 @@ data(){
             this.ClickEventlist=param1;
             console.log('ClickEventlist:'+this.ClickEventlist)
             console.log('ClickEventlist的属性:'+this.ClickEventlist.name)
-        }
+        },
     }
 }
 </script>

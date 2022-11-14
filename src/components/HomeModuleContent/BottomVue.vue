@@ -4,7 +4,7 @@
             <span class="icon-paste"></span>
             <span>倒数日</span>
         </div>
-        <div class="guanli">
+        <div class="guanli" @click="guanliClick($emit('guanliClick'))">
             <span class="icon-book"></span>
             <span>管理分类</span>
         </div>

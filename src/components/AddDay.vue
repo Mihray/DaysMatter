@@ -23,6 +23,7 @@
                     <option>生活</option>
                     <option>工作</option>
                     <option>纪念日</option>
+                    <option v-for="item4 in BookKind" :key="item4">{{item4.name}}</option>
                 </select>
             </div>
         </div>
@@ -52,6 +53,9 @@
 </template>
 <script> 
 export default {
+    props:{
+        BookKind:Array
+    },
     data(){
         return {
             // switchStyle:'margin-left: -3vh',
