@@ -1,15 +1,20 @@
 <template>
+
   <HomeModuleTop @addDayBtn="addDayBtn" v-if="homeShow"></HomeModuleTop>
-  <HomeModuleContent v-if="homeShow" :eventHome="eventApp" @guanliClick="guanliClick"></HomeModuleContent>
+  <HomeModuleContent v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
-  <GuanLiBook v-if="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
+  <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
+  <bottom-vue @guanliClick="guanliClick"></bottom-vue>
+  <!-- <bottom-vue></bottom-vue> -->
 </template>
 
 <script>
 import HomeModuleTop from './components/HomeModuleTop.vue'
 import HomeModuleContent from './components/HomeModuleContent.vue'
+import BottomVue from './components/BottomVue.vue'
 import AddDay from './components/AddDay.vue'
 import GuanLiBook from './components/GuanLiBook.vue'
+// import BottomVue from './components/BottomVue.vue'
 // import HomeModuleBottom from './components/HomeModuleBottom.vue'
 
 
@@ -20,6 +25,7 @@ export default {
     HomeModuleContent,
     AddDay,
     GuanLiBook,
+    BottomVue,
     // HomeModuleBottom,
   },
   data(){

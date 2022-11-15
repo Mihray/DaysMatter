@@ -1,6 +1,7 @@
 <template>
     <!-- <link rel="stylesheet" href="../assets/icomoon/style.css"> -->
-    <div class="square">
+    <div class="bigBox">
+        <div class="square">
         <div class="arrow" @click="returnHome"> 
             <div class="arrowhead"></div>
             <div class="arrowbody"></div>
@@ -22,7 +23,7 @@
                 <select id="kindInput" v-model="event.kindVar">
                     <option>生活</option>
                     <option>工作</option>
-                    <option>纪念日</option>
+                    <option >纪念日</option>
                     <option v-for="item4 in BookKind" :key="item4">{{item4.name}}</option>
                 </select>
             </div>
@@ -49,6 +50,7 @@
             </div>
         </div>
         <button class="but" @click="subDay">保存</button>
+    </div>
     </div>
 </template>
 <script> 
@@ -113,6 +115,11 @@ export default {
 </script>
 <style scoped>
 @import "../assets/icomoon/style.css";
+
+.bigBox{
+    height:91vh;
+    width: 100vw;
+}
 .square{
     /* width:100vmin;
     height:15vmax; */

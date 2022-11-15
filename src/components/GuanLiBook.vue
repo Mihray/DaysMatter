@@ -1,5 +1,6 @@
 <template>
-    <div class="square">
+    <div class="big-box">
+        <div class="square">
         <div class="arrow" @click="returnHome"> 
             <div class="arrowhead"></div>
             <div class="arrowbody"></div>
@@ -32,13 +33,18 @@
             <button @click="addBook">添加</button>
         </div>
     </div>
+    </div>
+    <!-- <bottom-vue></bottom-vue> -->
 </template>
 <script>
+
+// import BottomVue from './HomeModuleContent/BottomVue.vue';
+
 export default {
+//   components: { BottomVue },
     data(){
         return{
             kind:[
-                {name:''},
                     ],
             addKindShow:false,
             // inputValue:{name:''},
@@ -72,6 +78,10 @@ export default {
 }
 </script>
 <style scoped>
+.big-box{
+    height:91vh;
+    width: 100vw;
+}
 .square{
     /* width:100vmin;
     height:15vmax; */

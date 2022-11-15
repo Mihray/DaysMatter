@@ -37,6 +37,7 @@ export default {
     display:flex;
     flex-wrap: nowrap;
     box-sizing: border-box;
+    bottom: 0;
 }
 .day,.guanli,.myInfo{
     display: flex;

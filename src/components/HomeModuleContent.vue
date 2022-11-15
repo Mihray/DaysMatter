@@ -2,12 +2,12 @@
     <div class="content">
         <InfoBox :clickEventlist="ClickEventlist"></InfoBox>
         <day-list :eventList="eventHome" @ShowInfo="showInfo"></day-list>
-        <bottom-vue @guanliClick="guanliClick($emit('guanliClick'))"></bottom-vue>
+        <!-- <bottom-vue @guanliClick="guanliClick($emit('guanliClick'))"></bottom-vue> -->
     </div>
 </template>
 
 <script>
-import BottomVue from './HomeModuleContent/BottomVue.vue'
+// import BottomVue from './HomeModuleContent/BottomVue.vue'
 import DayList from './HomeModuleContent/DayList.vue'
 import InfoBox from './HomeModuleContent/InfoBox.vue'
 
@@ -16,7 +16,7 @@ export default {
   components: { 
     InfoBox,
     DayList,
-    BottomVue ,
+    // BottomVue ,
 }, 
 data(){
     return{
@@ -39,7 +39,7 @@ data(){
 </script>
 <style scoped>
 .content{
-    height:100vh;
+    height:91vh;
     display: flex;
     flex-direction: column;
     /* 水平居中 */
