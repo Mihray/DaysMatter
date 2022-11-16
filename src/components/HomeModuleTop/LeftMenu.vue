@@ -1,5 +1,5 @@
 <template>
-        <div class="menu-line">
+        <div class="menu-line" @click="menulineClick($emit('menulineClick'))">
             <div></div>
             <div></div>
             <div></div>

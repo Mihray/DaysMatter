@@ -1,6 +1,6 @@
 <template>
     <div class="square">
-            <LeftMenu></LeftMenu>
+            <LeftMenu @menulineClick="menulineClick($emit('menulineClick'))"></LeftMenu>
             <span class="span-title">倒数日</span>
             <TileBut></TileBut>
             <AddBut @addDayBtn="addDayBtn"></AddBut>

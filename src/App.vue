@@ -1,10 +1,13 @@
 <template>
 
-  <HomeModuleTop @addDayBtn="addDayBtn" v-if="homeShow"></HomeModuleTop>
-  <HomeModuleContent v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
+  <HomeModuleTop   @addDayBtn="addDayBtn" v-if="homeShow" @menulineClick="menulineClick"></HomeModuleTop>
+  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
   <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
-  <bottom-vue @guanliClick="guanliClick"></bottom-vue>
+  <MyInfo v-if="myInfoShow"></MyInfo>
+  <bottom-vue  @guanliClick="guanliClick" @dayClikc="dayClikc" @MyClikc="MyClikc"></bottom-vue>
+  <home-opacity v-if="isHomeOpacity"></home-opacity>
+  <side-bar v-if="SideBarShow"></side-bar>
   <!-- <bottom-vue></bottom-vue> -->
 </template>
 
@@ -14,6 +17,11 @@ import HomeModuleContent from './components/HomeModuleContent.vue'
 import BottomVue from './components/BottomVue.vue'
 import AddDay from './components/AddDay.vue'
 import GuanLiBook from './components/GuanLiBook.vue'
+import MyInfo from './components/MyInfo.vue'
+import SideBar from './components/SideBar.vue'
+import HomeOpacity from './components/HomeOpacity.vue'
+
+
 // import BottomVue from './components/BottomVue.vue'
 // import HomeModuleBottom from './components/HomeModuleBottom.vue'
 
@@ -26,15 +34,21 @@ export default {
     AddDay,
     GuanLiBook,
     BottomVue,
-    // HomeModuleBottom,
-  },
+    MyInfo,
+    SideBar,
+    HomeOpacity,
+},
   data(){
     return{
             addDayShow:'',
             homeShow:true,
             eventApp:[],
             addKind:'',
-            BookKind:[]
+            BookKind:[],
+            myInfoShow:'',
+            SideBarShow:'',
+            // BottomShow:true
+            isHomeOpacity:false
     }
   },
   methods:{
@@ -43,12 +57,16 @@ export default {
       this.addDayShow=true
       this.homeShow=false
       this.addKind=false
+      this.myInfoShow=false
+      this.SideBarShow=false
     },
     returnHome(){
       console.log('returnHome触发了')
       this.addDayShow=false
       this.homeShow=true
       this.addKind=false
+      this.myInfoShow=false
+      this.SideBarShow=false
     },
     subDayApp(param){
       console.log('submitDay触发了')
@@ -63,10 +81,35 @@ export default {
       this.addKind=true;
       this.homeShow=false;
       this.addDayShow=false;
+      this.myInfoShow=false
+      this.SideBarShow=false
     },
     UpBook(param4){
       this.BookKind=param4;
       console.log('Book类型是：'+this.BookKind)
+    },
+    dayClikc(){
+      this.addKind=false;
+      this.homeShow=true;
+      this.addDayShow=false;
+      this.myInfoShow=false
+      this.SideBarShow=false
+    },
+    MyClikc(){
+      this.addKind=false;
+      this.homeShow=false;
+      this.addDayShow=false;
+      this.myInfoShow=true;
+      this.SideBarShow=false
+    },
+    menulineClick(){
+      this.addKind=false;
+      this.homeShow=true;
+      this.addDayShow=false;
+      this.myInfoShow=false
+      this.SideBarShow=true
+      // this.BottomShow=false
+      this.isHomeOpacity=true;
     }
   }
 }
@@ -87,4 +130,13 @@ body{
   margin: 0;
   padding: 0;
 }
+/* .HomeOpacity{
+  width: 100vw;
+  height: 109vh;
+  background-color: black;
+  opacity: 0.4;
+  position: absolute;
+  z-index: 1;
+  position: absolute;
+} */
 </style>

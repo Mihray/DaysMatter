@@ -1,14 +1,14 @@
 <template>
     <div class="homeBottom">
-        <div class="day">
+        <div class="day" @click="dayClikc" :class="{day2:dayClickStyle}">
             <span class="icon-paste"></span>
             <span style="">倒数日</span>
         </div>
-        <div class="guanli" @click="guanliClick" :class="{guanli2:dayClickStyle}">
+        <div class="guanli" @click="guanliClick" :class="{guanli2:dayClickStyle2}">
             <span class="icon-book"></span>
             <span>管理分类</span>
         </div>
-        <div class="myInfo">
+        <div class="myInfo" @click="MyClikc" :class="{myInfo2:dayClickStyle3}">
             <span class="icon-profile"></span>
             <span>我的</span>
         </div>
@@ -18,13 +18,29 @@
 export default {
     data(){
         return{
-            dayClickStyle:false
+            dayClickStyle:true,
+            dayClickStyle2:false,
+            dayClickStyle3:false
         }
     },
     methods:{
         guanliClick(){
             this.$emit('guanliClick')
+            this.dayClickStyle2=true;
+            this.dayClickStyle=false;
+            this.dayClickStyle3=false;
+        },
+        dayClikc(){
+            this.$emit('dayClikc')
             this.dayClickStyle=true;
+            this.dayClickStyle2=false;
+            this.dayClickStyle3=false;
+        },
+        MyClikc(){
+            this.$emit('MyClikc')
+            this.dayClickStyle3=true;
+            this.dayClickStyle2=false;
+            this.dayClickStyle=false;
         }
     }
 }
@@ -56,6 +72,12 @@ export default {
     color: white;
 }
 .guanli2 span{
+    color:black;
+}
+.day2 span{
+    color:black;
+}
+.myInfo2 span{
     color:black;
 }
 </style>

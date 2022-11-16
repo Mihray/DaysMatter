@@ -2,55 +2,55 @@
     <!-- <link rel="stylesheet" href="../assets/icomoon/style.css"> -->
     <div class="bigBox">
         <div class="square">
-        <div class="arrow" @click="returnHome"> 
-            <div class="arrowhead"></div>
-            <div class="arrowbody"></div>
+         <div class="arrow" @click="returnHome"> 
+             <div class="arrowhead"></div>
+             <div class="arrowbody"></div>
+         </div>
+         <span>添加新倒数日</span>
         </div>
-        <span>添加新倒数日</span>
-    </div>
-    <div class="inputBox">
-        <div class="eventName">
-            <span class="icon-paste"></span>
-            <input  placeholder="输入事件名称" v-model="event.name">
-        </div>
-        <div class="date"> 
-            <span class="icon-calendar"></span> 
-            <input type="date" v-model="event.date">
-        </div>
-        <div class="kind"> 
-            <span class="icon-book"></span> 
-            <div>倒数本
-                <select id="kindInput" v-model="event.kindVar">
-                    <option>生活</option>
-                    <option>工作</option>
-                    <option >纪念日</option>
-                    <option v-for="item4 in BookKind" :key="item4">{{item4.name}}</option>
-                </select>
+       <div class="inputBox">
+            <div class="eventName">
+                <span class="icon-paste"></span>
+                <input  placeholder="输入事件名称" v-model="event.name">
             </div>
-        </div>
-        <div class="overHead"> 
-            <span class="icon-upload"></span>
-            <div>顶置
-                <div class="switch"  @click="overHeadClick"> 
-                    <div class="down-on" :class="{'down-off':isActive}"></div>
-                    <div class="circle-on" v-if="on"></div>
-                    <div class="circle-off" v-if="off"></div>
+            <div class="date"> 
+                <span class="icon-calendar"></span> 
+                <input type="date" v-model="event.date">
+            </div>
+            <div class="kind"> 
+                <span class="icon-book"></span> 
+                <div>倒数本
+                    <select id="kindInput" v-model="event.kindVar">
+                        <option>生活</option>
+                        <option>工作</option>
+                        <option >纪念日</option>
+                        <option v-for="item4 in BookKind" :key="item4">{{item4.name}}</option>
+                    </select>
                 </div>
             </div>
-        </div>
-        <div class="repitition"> 
-            <span class="icon-spinner11"></span>
-            <div>重复
-                <select v-model="event.repititionVar">
-                    <option>不重复</option>
-                    <option>每周</option>
-                    <option>每月</option>
-                    <option>每年</option>
-                </select>
+            <div class="overHead"> 
+                <span class="icon-upload"></span>
+                <div>顶置
+                    <div class="switch"  @click="overHeadClick"> 
+                        <div class="down-on" :class="{'down-off':isActive}"></div>
+                        <div class="circle-on" v-if="on"></div>
+                        <div class="circle-off" v-if="off"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <button class="but" @click="subDay">保存</button>
-    </div>
+            <div class="repitition"> 
+                <span class="icon-spinner11"></span>
+                <div>重复
+                    <select v-model="event.repititionVar">
+                        <option>不重复</option>
+                        <option>每周</option>
+                        <option>每月</option>
+                        <option>每年</option>
+                    </select>
+                </div>
+            </div>
+            <button class="but" @click="subDay">保存</button>
+         </div>
     </div>
 </template>
 <script> 
