@@ -1,18 +1,74 @@
 <template>
-    <div class="bigBox">
+    <div class="bigBox" @touchstart="TouchStart" @touchend="TouchEnd" @touchmove="onTouchMove">
         <div class="square">
-         <div class="arrow" @click="returnHome"> 
-             <div class="arrowhead"></div>
-             <div class="arrowbody"></div>
-         </div>
          <span>倒数日分类</span>
         </div>
-        <div class="below"></div>
+        <div class="content"> 
+            <div>全部
+                <div>3</div>
+            </div>
+            <div>生活
+                <div>1</div>
+            </div>
+            <div>工作
+                <div>1</div>
+            </div>
+            <div>纪念日
+                <div>1</div>
+            </div>
+            <div v-for="item5 in BookKind2" :key="item5">{{item5.name}}</div>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:{
+        BookKind2:Array,
+        close: Function,
+    },
+    data(){
+        return{
+            startT1:'',
+            startX:'',
+            startY:'',
+            endT2:'',
+            endX:'',
+            endY:'',
+            time:'',
+            Touch:'',
+        }
+    },
+    methods:{
+
+        onTouchMove(e){
+            const a =(new Date()).valueOf()
+            console.log('Touchmove触发时间'+ a)
+            console.log(e);
+            this.endX=e.touches[0].clientX
+            this.endY=e.touches[0].clientY
+            console.log('endX:'+this.endX+',endY:'+this.endY)
+        },
+        TouchStart(e){
+            console.log('TouchStart触发了');
+            console.log(e);
+            this.startT1=(new Date()).valueOf()
+            console.log('TouchStart触发时间'+this.startT1)
+            console.log('startX:'+this.startX)
+            console.log(this.BookKind2)
+            this.startX=e.touches[0].clientX
+            this.startY=e.touches[0].clientY
+            console.log('startX:'+this.startX+',startY:'+this.startY)
+        },
+        TouchEnd(e){
+            console.log('TouchEnd触发了');
+            console.log(e);
+            this.endT2=(new Date()).valueOf()
+            console.log('TouchStart触发时间'+ this.endT2)
+            this.time=this.endT2-this.startT1;
+            console.log('总时间time：'+this.time)
+            console.log(this.BookKind2)
+        }
+    }
 }
 </script>
 <style scoped>
@@ -34,31 +90,30 @@ export default {
     /* position: absolute; */
     display: flex;
 }
-.arrow{
-    display: flex;
-    width: 6vh;
-    height:5vh ;
-    margin-top:5vh ;
-    margin-left: 4.5vh;
-}
-.arrowhead{
-    width: 2vh;
-    height:2vh ;
-    border-width:0 0 0.6vh  0.6vh ;
-    border-color:white;
-    border-style: solid;
-    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-}
-.arrowbody{
-    width: 3.5vh;
-    height:0.6vh ;
-    background-color: white;
-    margin-top: 1vh;
-    margin-left: -2.4vh;
-}
 .square span{
     margin-top: 4vh;
     font-size: 3vh;
-    color:white
+    color:white;
+    margin-left:6vw;
+}
+.content>div{
+    width: 65vw;
+    /* height:10vh; */
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 4vw;
+    font-weight: 100;
+    color:rgb(172, 179, 186);
+    display:flex;
+    font-size:3vh;
+    justify-content:space-between
+}
+.content>div>div{
+    width: 10vw;
+    background-color: rgb(172, 179, 186);
+    color: black;
+    border-radius: 2vw;
+    display: flex;
+    justify-content: center;
 }
 </style>

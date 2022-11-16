@@ -7,7 +7,7 @@
   <MyInfo v-if="myInfoShow"></MyInfo>
   <bottom-vue  @guanliClick="guanliClick" @dayClikc="dayClikc" @MyClikc="MyClikc"></bottom-vue>
   <home-opacity v-if="isHomeOpacity"></home-opacity>
-  <side-bar v-if="SideBarShow"></side-bar>
+  <side-bar v-if="SideBarShow" :BookKind2="BookKind" :close="closeSidebar"></side-bar>
   <!-- <bottom-vue></bottom-vue> -->
 </template>
 
@@ -110,6 +110,14 @@ export default {
       this.SideBarShow=true
       // this.BottomShow=false
       this.isHomeOpacity=true;
+    },
+    closeSidebar(){
+      this.SideBarShow = false;
+      this.addKind=false;
+      this.homeShow=true;
+      this.addDayShow=false;
+      this.myInfoShow=false
+      this.isHomeOpacity=false;
     }
   }
 }
