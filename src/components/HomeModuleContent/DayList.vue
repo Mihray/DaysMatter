@@ -1,7 +1,7 @@
 <template>
     <div class="dayList">
-        <ul>
-            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))">{{item.name}}
+        <ul :class="{dayListNew:!(TileButVar)}">
+            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))">距{{item.name}}
                 <div>{{item.days}}天</div>
             </li>
         </ul>
@@ -14,6 +14,7 @@
 export default {
     props:{
             eventList:Array,
+            TileButVar:Boolean,
          } ,
          data(){
             return{
@@ -55,5 +56,30 @@ export default {
     display: flex;
     justify-content:center;
     align-items:center;
+}
+.dayList .dayListNew{
+    width: 100vw;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 11vh;
+}
+.dayList .dayListNew li{
+    padding: 0;
+    width:40vw;
+    height:15vh;
+    background-color: rgb(53, 162, 189);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6vw;
+    box-sizing: border-box;
+}
+.dayList .dayListNew li div{
+    /* width:19vw; */
+    height:10vh;
+    background-color: rgb(53, 162, 189);
+    box-sizing: border-box;
 }
 </style>

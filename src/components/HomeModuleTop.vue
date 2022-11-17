@@ -2,7 +2,7 @@
     <div class="square">
             <LeftMenu @menulineClick="menulineClick($emit('menulineClick'))"></LeftMenu>
             <span class="span-title">倒数日</span>
-            <TileBut></TileBut>
+            <TileBut @TileBut="TileBut"></TileBut>
             <AddBut @addDayBtn="addDayBtn"></AddBut>
     </div>
 </template>
@@ -19,13 +19,15 @@ export default{
     },
     data(){
         return{
-
         }
     },
     methods:{
         addDayBtn(){
             console.log('传到TopModule了')
             this.$emit('addDayBtn')
+        },
+        TileBut(){
+            this.$emit('TileBut')
         }
     }
 }

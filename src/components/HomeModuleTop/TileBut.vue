@@ -1,5 +1,5 @@
 <template>
-    <div class="tileBut">
+    <div class="tileBut" @click="TileBut">
         <div>
             <div></div>
             <div></div>
@@ -11,7 +11,18 @@
     </div>
 </template>
 <script>
+export default {
+    data(){
+        return{
 
+        }
+    },
+    methods:{
+        TileBut(){
+            this.$emit('TileBut')
+        }
+    }
+}
 </script>
 <style scoped>
 .tileBut{

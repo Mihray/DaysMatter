@@ -1,7 +1,7 @@
 <template>
 
-  <HomeModuleTop   @addDayBtn="addDayBtn" v-if="homeShow" @menulineClick="menulineClick"></HomeModuleTop>
-  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp"></HomeModuleContent>
+  <HomeModuleTop   @addDayBtn="addDayBtn" v-if="homeShow" @menulineClick="menulineClick" @TileBut="TileBut"></HomeModuleTop>
+  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp" :TileButVar="TileButVar"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
   <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
   <MyInfo v-if="myInfoShow"></MyInfo>
@@ -52,7 +52,8 @@ export default {
             allAmount:0,
             lifeAmount:0,
             workAmount:0,
-            memorialDayAmount:0
+            memorialDayAmount:0,
+            TileButVar:true,
     }
   },
   methods:{
@@ -136,6 +137,9 @@ export default {
       this.addDayShow=false;
       this.myInfoShow=false
       this.isHomeOpacity=false;
+    },
+    TileBut(){
+      this.TileButVar=!this.TileButVar;
     }
   }
 }
