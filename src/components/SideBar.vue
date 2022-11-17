@@ -33,11 +33,11 @@ export default {
     data(){
         return{
             startT1:'',
-            startX:'',
-            startY:'',
+            startX:undefined,
+            startY:undefined,
             endT2:'',
-            endX:'',
-            endY:'',
+            endX:undefined,
+            endY:undefined,
             time:'',
             Touch:'',
         }
@@ -46,35 +46,39 @@ export default {
 
         onTouchMove(e){
             const a =(new Date()).valueOf()
-            console.log('Touchmove触发时间:'+ a)
+            // console.log('Touchmove触发时间:'+ a)
             console.log(e);
             this.endX=e.touches[0].clientX
             this.endY=e.touches[0].clientY
-            console.log('endX:'+this.endX+',endY:'+this.endY)
+            // console.log('endX:'+this.endX+',endY:'+this.endY)
         },
         TouchStart(e){
-            console.log('TouchStart触发了');
-            console.log(e);
+            // console.log('TouchStart触发了');
+            // console.log(e);
             this.startT1=(new Date()).valueOf()
-            console.log('TouchStart触发时间'+this.startT1)
-            console.log('startX:'+this.startX)
-            console.log(this.BookKind2)
+            // console.log('TouchStart触发时间'+this.startT1)
+            // console.log('startX:'+this.startX)
+            // console.log(this.BookKind2)
             this.startX=e.touches[0].clientX
             this.startY=e.touches[0].clientY
-            console.log('startX:'+this.startX+',startY:'+this.startY)
+            // console.log('startX:'+this.startX+',startY:'+this.startY)
         },
         TouchEnd(e){
             console.log('TouchEnd触发了');
-            console.log(e);
+            // console.log(e);
             this.endT2=(new Date()).valueOf()
-            console.log('TouchStart触发时间'+ this.endT2)
+            // console.log('TouchStart触发时间'+ this.endT2)
             this.time=this.endT2-this.startT1;
-            console.log('总时间time：'+this.time)
-            console.log(this.BookKind2)
+            // console.log('总时间time：'+this.time)
+            // console.log(this.BookKind2)
+            console.log('startX:'+this.startX + ',startY:'+this.startY+'\nendX:'+this.endX+';endY:'+this.endY);
             //判断滑动向左的方向
             if((this.endX<this.startX)&&(this.startX-this.endX>50)&&((this.endY-this.startY===0&&this.endX<this.startX)||((this.startX-this.endX)>(this.startY-this.endY))||((this.startX-this.endX)>(this.endY-this.startY)))){
                 console.log('向左滑动了')
                 this.close()
+            }else{
+                this.endX=undefined
+                this.endY=undefined
             }
         }
     }

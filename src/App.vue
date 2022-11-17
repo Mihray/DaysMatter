@@ -75,9 +75,19 @@ export default {
     },
     subDayApp(param){
       console.log('submitDay触发了')
-      const currentEventList = this.eventApp;
-      currentEventList.push(param);
-      this.eventApp= currentEventList;
+      // const currentEventList = this.eventApp;
+      // currentEventList.push(param);
+      // this.eventApp= currentEventList;
+      if(param.overHeadVar===true){
+        const currentEventList = this.eventApp;
+        currentEventList.unshift(param);
+        this.eventApp= currentEventList;
+      }
+      if(param.overHeadVar===false){
+        const currentEventList = this.eventApp;
+        currentEventList.push(param);
+        this.eventApp= currentEventList;
+      }
       // this.eventApp.push(param)
       console.log('App的event:'+this.eventApp)
       console.log('App的event的name:'+this.eventApp.name)

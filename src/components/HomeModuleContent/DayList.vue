@@ -1,7 +1,7 @@
 <template>
     <div class="dayList">
         <ul :class="{dayListNew:!(TileButVar)}">
-            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))">距{{item.name}}
+            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))">{{item.name}}
                 <div>{{item.days}}天</div>
             </li>
         </ul>
