@@ -7,7 +7,7 @@
   <MyInfo v-if="myInfoShow"></MyInfo>
   <bottom-vue  @guanliClick="guanliClick" @dayClikc="dayClikc" @MyClikc="MyClikc"></bottom-vue>
   <home-opacity v-if="isHomeOpacity"></home-opacity>
-  <side-bar v-if="SideBarShow" :BookKind2="BookKind" :close="closeSidebar"></side-bar>
+  <side-bar v-if="SideBarShow" :BookKind2="BookKind" :close="closeSidebar" :allAmount="allAmount" :lifeAmount="lifeAmount" :workAmount="workAmount" :memorialDayAmount="memorialDayAmount"></side-bar>
   <!-- <bottom-vue></bottom-vue> -->
 </template>
 
@@ -48,7 +48,11 @@ export default {
             myInfoShow:'',
             SideBarShow:'',
             // BottomShow:true
-            isHomeOpacity:false
+            isHomeOpacity:false,
+            allAmount:0,
+            lifeAmount:0,
+            workAmount:0,
+            memorialDayAmount:0
     }
   },
   methods:{
@@ -76,6 +80,20 @@ export default {
       // this.eventApp.push(param)
       console.log('App的event:'+this.eventApp)
       console.log('App的event的name:'+this.eventApp.name)
+      this.allAmount++
+      console.log('全部事件数目：'+this.allAmount)
+      if(param.kindVar==='生活'){
+        this.lifeAmount++;
+        console.log('生活类型：'+this.lifeAmount)
+      }
+      if(param.kindVar==='工作'){
+        this.workAmount++;
+        console.log('工作类型：'+this.workAmount)
+      }
+      if(param.kindVar==='纪念日'){
+        this.memorialDayAmount++;
+        console.log('纪念日：'+this.memorialDayAmount)
+      }
     },
     guanliClick(){
       this.addKind=true;

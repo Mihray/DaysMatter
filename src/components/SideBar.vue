@@ -5,16 +5,16 @@
         </div>
         <div class="content"> 
             <div>全部
-                <div>3</div>
+                <div>{{allAmount}}</div>
             </div>
             <div>生活
-                <div>1</div>
+                <div>{{lifeAmount}}</div>
             </div>
             <div>工作
-                <div>1</div>
+                <div>{{workAmount}}</div>
             </div>
             <div>纪念日
-                <div>1</div>
+                <div>{{memorialDayAmount}}</div>
             </div>
             <div v-for="item5 in BookKind2" :key="item5">{{item5.name}}</div>
         </div>
@@ -25,6 +25,10 @@ export default {
     props:{
         BookKind2:Array,
         close: Function,
+        allAmount:Number,
+        lifeAmount:Number,
+        workAmount:Number,
+        memorialDayAmount:Number
     },
     data(){
         return{
