@@ -42,7 +42,7 @@ export default {
 
         onTouchMove(e){
             const a =(new Date()).valueOf()
-            console.log('Touchmove触发时间'+ a)
+            console.log('Touchmove触发时间:'+ a)
             console.log(e);
             this.endX=e.touches[0].clientX
             this.endY=e.touches[0].clientY
@@ -67,6 +67,11 @@ export default {
             this.time=this.endT2-this.startT1;
             console.log('总时间time：'+this.time)
             console.log(this.BookKind2)
+            //判断滑动向左的方向
+            if((this.endX<this.startX)&&(this.startX-this.endX>50)&&((this.endY-this.startY===0&&this.endX<this.startX)||((this.startX-this.endX)>(this.startY-this.endY))||((this.startX-this.endX)>(this.endY-this.startY)))){
+                console.log('向左滑动了')
+                this.close()
+            }
         }
     }
 }
