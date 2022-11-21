@@ -1,5 +1,5 @@
 <template>
-    <div class="dayList">
+    <div class="dayList" @touchstart="touchstartList" @touchend="touchendList" @touchmove="touchmoveList">
         <ul :class="{dayListNew:!(TileButVar)}">
             <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))">{{item.name}}
                 <div>{{item.days}}天</div>
@@ -15,18 +15,65 @@ export default {
     props:{
             eventList:Array,
             TileButVar:Boolean,
+            touchEmit:Boolean,
          } ,
          data(){
             return{
-
+                //判断list thouch 事件用
+            listStartT1:'',
+            listStartX:undefined,
+            listStartY:undefined,
+            listEndT2:'',
+            listEndX:undefined,
+            listEndY:undefined,
+            listETime:'',
+            listTouch:'',
             }
          },
          methods:{
-        
+            //方向判断
+            touchstartList(el){
+                if(this.touchEmit===true){
+                    this.listStartT1=(new Date()).valueOf()
+                    this.listStartX=el.touches[0].clientX
+                    this.listStartY=el.touches[0].clientY
+                    console.log('listStartX:'+this.listStartX+',listStartY:'+this.listStartY)
+                }
+            },
+            touchmoveList(el){
+                if(this.touchEmit===true){
+                    this.listEndX=el.touches[0].clientX
+                    this.listEndY=el.touches[0].clientY
+                    console.log('listEndX:'+this.listEndX+',listEndY:'+this.listEndY)
+                }
+            },
+            touchendList(){
+                if(this.touchEmit===true){
+                    this.listEndT2=(new Date()).valueOf()
+                    this.listETime=this.listEndT2-this.listStartT1
+                    console.log('listETime:'+this.listETime)
+                    //向上判断
+                    if((this.listStartY>this.listEndY)&&(this.listStartY-this.listEndY>20)&&((this.listStartX-this.listEndX===0)||((this.listStartY-this.listEndY)>(this.listStartX-this.listEndX))||((this.listStartY-this.listEndY)>(this.listEndX-this.listStartX)))){
+                        console.log('向上滑动了')
+
+                    }
+                    //向下判断
+                    if((this.listStartY<this.listEndY)&&(this.listEndY-this.listStartY>20)&&((this.listStartX-this.listEndX===0)||(Math.abs((this.listStartY-this.listEndY))>Math.abs((this.listStartX-this.listEndX))))){
+                        console.log('向下滑动了')
+                    }
+                    this.listEndX=undefined
+                    this.listEndY=undefined
+            }
          }
+}
 }
 </script>
 <style scoped>
+.dayList{
+    margin-top: 1vh;
+    /* overflow:hidden; */
+    overflow: scroll;
+}
 .dayList ul{
     list-style: none;
     padding: 0;
@@ -62,6 +109,7 @@ export default {
     list-style: none;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 11vh;
 }
 .dayList .dayListNew li{
@@ -75,9 +123,10 @@ export default {
     align-items: center;
     margin-left: 6vw;
     box-sizing: border-box;
+    margin-top: 3vh;
 }
 .dayList .dayListNew li div{
-    /* width:19vw; */
+    width:20vw;
     height:10vh;
     background-color: rgb(53, 162, 189);
     box-sizing: border-box;

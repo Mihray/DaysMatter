@@ -1,7 +1,7 @@
 <template>
 
   <HomeModuleTop   @addDayBtn="addDayBtn" v-if="homeShow" @menulineClick="menulineClick" @TileBut="TileBut"></HomeModuleTop>
-  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp" :TileButVar="TileButVar"></HomeModuleContent>
+  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp" :TileButVar="TileButVar" :touchEmit="touchEmit"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
   <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
   <MyInfo v-if="myInfoShow"></MyInfo>
@@ -54,6 +54,9 @@ export default {
             workAmount:0,
             memorialDayAmount:0,
             TileButVar:true,
+
+            //触发判断方向事件使用
+            touchEmit:false
     }
   },
   methods:{
@@ -73,6 +76,9 @@ export default {
       this.myInfoShow=false
       this.SideBarShow=false
     },
+    test(){
+      console.log('test IF 里能不能执行函数')
+    },
     subDayApp(param){
       console.log('submitDay触发了')
       // const currentEventList = this.eventApp;
@@ -91,7 +97,11 @@ export default {
       // this.eventApp.push(param)
       console.log('App的event:'+this.eventApp)
       console.log('App的event的name:'+this.eventApp.name)
-      this.allAmount++
+      this.allAmount++;
+      if(this.allAmount>=5){
+        this.test()
+        this.touchEmit=true;
+      }
       console.log('全部事件数目：'+this.allAmount)
       if(param.kindVar==='生活'){
         this.lifeAmount++;
@@ -150,7 +160,7 @@ export default {
     },
     TileBut(){
       this.TileButVar=!this.TileButVar;
-    }
+    },
   }
 }
 </script>

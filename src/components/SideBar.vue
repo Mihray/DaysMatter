@@ -45,7 +45,7 @@ export default {
     methods:{
 
         onTouchMove(e){
-            const a =(new Date()).valueOf()
+            // const a =(new Date()).valueOf()
             // console.log('Touchmove触发时间:'+ a)
             console.log(e);
             this.endX=e.touches[0].clientX
@@ -65,7 +65,7 @@ export default {
         },
         TouchEnd(e){
             console.log('TouchEnd触发了');
-            // console.log(e);
+            console.log(e);
             this.endT2=(new Date()).valueOf()
             // console.log('TouchStart触发时间'+ this.endT2)
             this.time=this.endT2-this.startT1;

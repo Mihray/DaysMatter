@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <InfoBox :clickEventlist="ClickEventlist" v-show="TileButVar"></InfoBox>
-        <day-list :eventList="eventHome" @ShowInfo="showInfo" :TileButVar="TileButVar"></day-list>
+        <day-list :eventList="eventHome" @ShowInfo="showInfo" :TileButVar="TileButVar" :touchEmit="touchEmit"></day-list>
         <!-- <bottom-vue @guanliClick="guanliClick($emit('guanliClick'))"></bottom-vue> -->
     </div>
 </template>
@@ -27,6 +27,7 @@ data(){
     props:{
         eventHome:Array,
         TileButVar:Boolean,
+        touchEmit:Boolean,
     },
     methods:{
         showInfo(param1){
