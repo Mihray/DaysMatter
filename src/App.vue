@@ -54,6 +54,7 @@ export default {
             workAmount:0,
             memorialDayAmount:0,
             TileButVar:true,
+            
 
             //触发判断方向事件使用
             touchEmit:false
