@@ -1,7 +1,8 @@
 <template>
 
   <HomeModuleTop   @addDayBtn="addDayBtn" v-if="homeShow" @menulineClick="menulineClick" @TileBut="TileBut"></HomeModuleTop>
-  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp" :TileButVar="TileButVar" :touchEmit="touchEmit"></HomeModuleContent>
+  <HomeModuleContent  v-if="homeShow" :eventHome="eventApp" :TileButVar="TileButVar" 
+  :touchEmit="touchEmit" @delList="delList"></HomeModuleContent>
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
   <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
   <MyInfo v-if="myInfoShow"></MyInfo>
@@ -54,10 +55,16 @@ export default {
             workAmount:0,
             memorialDayAmount:0,
             TileButVar:true,
-            
+
 
             //触发判断方向事件使用
-            touchEmit:false
+            touchEmit:false,
+
+            //添加的对象的id
+            nextId:0,
+            
+            //添加了新的id之后的对象
+            eventparam:{}
     }
   },
   methods:{
@@ -82,19 +89,28 @@ export default {
     },
     subDayApp(param){
       console.log('submitDay触发了')
+      //给倒数日事件添加id
+      this.eventparam=param;
+      this.nextId++;
+      this.eventparam.id=this.nextId;
+      console.log('添加的倒数日对象的id：'+this.eventparam.id)
+
       // const currentEventList = this.eventApp;
       // currentEventList.push(param);
       // this.eventApp= currentEventList;
       if(param.overHeadVar===true){
         const currentEventList = this.eventApp;
-        currentEventList.unshift(param);
+        currentEventList.unshift(this.eventparam);
+        // currentEventList.unshift(param);
         this.eventApp= currentEventList;
       }
       if(param.overHeadVar===false){
         const currentEventList = this.eventApp;
-        currentEventList.push(param);
+        currentEventList.push(this.eventparam);
+        // currentEventList.push(param);
         this.eventApp= currentEventList;
       }
+      console.log('添加的对象数组'+this.eventApp)
       // this.eventApp.push(param)
       console.log('App的event:'+this.eventApp)
       console.log('App的event的name:'+this.eventApp.name)
@@ -116,6 +132,18 @@ export default {
         this.memorialDayAmount++;
         console.log('纪念日：'+this.memorialDayAmount)
       }
+    },
+    delList(id,name){
+      console.log('App接受删除信号成功')
+      var index=null
+      index=this.eventApp.findIndex(item=>{
+        if(item.id==id){
+          name=item.name
+          return true
+        }
+      })
+      console.log("id=" + id + ",数组的索引为" + index, "删除了" + name);
+      this.eventApp.splice(index,1)
     },
     guanliClick(){
       this.addKind=true;

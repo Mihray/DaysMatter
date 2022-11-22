@@ -1,7 +1,9 @@
 <template>
     <div class="content">
         <InfoBox :clickEventlist="ClickEventlist" v-show="TileButVar"></InfoBox>
-        <day-list :eventList="eventHome" @ShowInfo="showInfo" :TileButVar="TileButVar" :touchEmit="touchEmit"></day-list>
+        <day-list :eventList="eventHome" @ShowInfo="showInfo" 
+        :TileButVar="TileButVar" :touchEmit="touchEmit"
+        @delList="delList"></day-list>
         <!-- <bottom-vue @guanliClick="guanliClick($emit('guanliClick'))"></bottom-vue> -->
     </div>
 </template>
@@ -36,6 +38,9 @@ data(){
             console.log('ClickEventlist:'+this.ClickEventlist)
             console.log('ClickEventlist的属性:'+this.ClickEventlist.name)
         },
+        delList(){
+            this.$emit('delList',)
+        }
     }
 }
 </script>

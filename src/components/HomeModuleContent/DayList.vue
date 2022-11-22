@@ -1,7 +1,13 @@
 <template>
     <div class="dayList" @touchstart="touchstartList" @touchend="touchendList" @touchmove="touchmoveList">
         <ul :class="{dayListNew:!(TileButVar)}">
-            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))" :class="{overHead:item.overHeadVar}">{{item.name}}
+            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))" 
+            @touchstart="touchstartDel" @touchend="touchendDel" 
+            :class="{overHead:item.overHeadVar}">{{item.name}}
+                <ul class="deletaBox" v-if="delShow">
+                        <li @click="delList">删除</li>
+                        <li>置顶</li>
+                </ul>
                 <div>{{item.days}}天</div>
             </li>
         </ul>
@@ -11,6 +17,7 @@
     </div>
 </template>
 <script>
+
 export default {
     props:{
             eventList:Array,
@@ -29,6 +36,11 @@ export default {
             listETime:'',
             listTouch:'',
             distance:'',
+            //长按（删除）事件用
+            DelStartT1:'',
+            DelEndT2:'',
+            DelTime:'',
+            delShow:[],
             }
          },
          methods:{
@@ -66,6 +78,21 @@ export default {
                     this.listEndX=undefined
                     this.listEndY=undefined
             }
+         },
+         //长按弹窗
+         touchstartDel(){
+            this.DelStartT1=(new Date()).valueOf()
+         },
+         touchendDel(){
+            this.DelEndT2=(new Date()).valueOf()
+            this.DelTime=this.DelEndT2-this.DelStartT1
+            if(this.DelTime>200){
+                console.log('长按时间是：'+this.DelTime)
+                this.delShow=true
+            }
+         },
+         delList(){
+            this.$emit('delList')
          }
 }
 }
@@ -158,5 +185,28 @@ export default {
     height:10vh;
     background-color: rgb(53, 162, 189);
     box-sizing: border-box;
+}
+.deletaBox{
+    width:10vw;
+    height:7vh;
+    list-style: none;
+    /* font-size: 1vh; */
+    padding: 0;
+}
+.dayList ul li .deletaBox li{
+    width:10vw;
+    height:3.5vh;
+    background-color: bisque;
+    border-radius:0;
+    font-size: 2.2vh;
+    font-weight: 200;
+    padding-left: 0;
+    margin-top: 0;
+    display: flex;
+    /* 让元素贴右边对齐 */
+    justify-content:center;
+    /* align-items:center; */
+    margin-top: -1.5vh;
+    padding-top: 0.6vh;
 }
 </style>

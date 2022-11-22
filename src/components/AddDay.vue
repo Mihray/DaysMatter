@@ -30,7 +30,7 @@
             </div>
             <div class="overHead"> 
                 <span class="icon-upload"></span>
-                <div>顶置
+                <div>置顶
                     <div class="switch"  @click="overHeadClick"> 
                         <div class="down-on" :class="{'down-off':isActive}"></div>
                         <div class="circle-on" v-if="on"></div>
@@ -65,14 +65,16 @@ export default {
             off:false,
             isActive:false,
             date:'',
+            nextId:0,
             event:{
+                id:1,
                 name:'',
                 date:'',
                 kindVar:'',
-                overHeadVar:true,
+                overHeadVar:false,
                 repititionVar:'',
                 days:'',
-            }
+            },
         }
     },
     methods:{
@@ -107,8 +109,19 @@ export default {
             this.event.days=Math.ceil((Milliseconds2-Milliseconds1)/86400000)
             console.log(this.event.days)
             console.log(this.event)
+            //添加id用
+            // this.nextId++;
+            // this.event.id=this.nextId;
+            // console.log('添加的倒数日对象的id：'+this.event.id)
             this.$emit('subDay',this.event)
             this.$emit('returnHome')
+            // this.event.name='';
+            // this.event.date='';
+            // this.event.kindVar='';
+            // this.event.overHeadVar=false;
+            // this.event.repititionVar='';
+            // this.event.days='';
+            // this.event.id=0
          }
     }
 }
