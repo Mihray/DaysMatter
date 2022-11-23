@@ -29,6 +29,12 @@
             </li>
         </ul>
         <div class="addKindBox" v-show="addKindShow">
+            <div class="cancelBox" @click="cancelClick">
+                <div class="cancelBox1"></div>
+                <div class="cancelBox2"></div>
+                <div class="cancelBox3"></div>
+                <div class="cancelBox4"></div>
+            </div>
             <input type="text" placeholder="请输入倒数本名字"   v-model="inputValue">
             <button @click="addBook">添加</button>
         </div>
@@ -73,6 +79,9 @@ export default {
             this.inputValue="";
             console.log(this.kind);
             this.$emit('UpBook',this.kind)
+         },
+         cancelClick(){
+            this.addKindShow=false;
          }
     }
 }
@@ -160,6 +169,39 @@ export default {
     flex-direction: column;
     align-items: center;
 }
+.cancelBox{
+    width: 6vw;
+    height: 6vw;
+    margin-left: 65vw;
+    /* background-color: rgb(53, 162, 189); */
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    box-sizing: border-box;
+    display: flex; 
+    flex-wrap: wrap; 
+    align-content: space-between;
+    /* .column { flex-basis: 100%; display: flex; justify-content: space-between;} */
+}
+.cancelBox div{
+    width: 3vw;
+    height: 3vw;
+    /* background-color: rgb(53, 162, 189); */
+    box-sizing: border-box;
+}
+.cancelBox1{
+    border-right:1vw solid white;
+    border-bottom:1vw solid white;
+    margin-top: 1vw;
+}
+.cancelBox4{
+    margin-left: -1vw;
+    margin-top: -1vw;
+    border-left:1vw solid white;
+    border-top:1vw solid white;
+}
+/* .cancelBox3{
+    border-right:1.3vw solid white;
+    border-bottom:1.3vw solid white;
+} */
 .addKindBox input{
     width:60vw;
     height: 6vh;
