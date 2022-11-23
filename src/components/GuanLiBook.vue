@@ -85,6 +85,7 @@ export default {
             })
             console.log("id=" + idd + ",数组的索引为" + index, "删除了" + name);
             this.kind.splice(index,1)
+            this.delBoxShow=false
          },
          addBook(){
             this.addKindShow=false;
