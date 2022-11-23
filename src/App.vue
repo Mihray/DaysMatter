@@ -6,7 +6,8 @@
   <add-day v-if="addDayShow" @returnHome="returnHome" @subDay="subDayApp" :BookKind="BookKind"></add-day>
   <GuanLiBook v-show="addKind" @returnHome="returnHome" @UpBook="UpBook"></GuanLiBook>
   <MyInfo v-if="myInfoShow"></MyInfo>
-  <bottom-vue  @guanliClick="guanliClick" @dayClikc="dayClikc" @MyClikc="MyClikc"></bottom-vue>
+  <bottom-vue  @guanliClick="guanliClick" @dayClikc="dayClikc" @MyClikc="MyClikc"
+  :homeShow="homeShow"></bottom-vue>
   <home-opacity v-if="isHomeOpacity"></home-opacity>
   <side-bar v-if="SideBarShow" :BookKind2="BookKind" :close="closeSidebar" :allAmount="allAmount" :lifeAmount="lifeAmount" :workAmount="workAmount" :memorialDayAmount="memorialDayAmount"></side-bar>
   <!-- <bottom-vue></bottom-vue> -->

@@ -23,6 +23,9 @@ export default {
             dayClickStyle3:false
         }
     },
+    props:{
+        homeShow:Boolean
+    },
     methods:{
         guanliClick(){
             this.$emit('guanliClick')
@@ -41,8 +44,16 @@ export default {
             this.dayClickStyle3=true;
             this.dayClickStyle2=false;
             this.dayClickStyle=false;
+        },
+    },
+    updated(){
+        if(this.homeShow===true){
+            console.log('返回到home页面了')
+            this.dayClickStyle=true;
+            this.dayClickStyle2=false;
+            this.dayClickStyle3=false;
         }
-    }
+    },
 }
 </script>
 <style scoped>
