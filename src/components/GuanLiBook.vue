@@ -18,8 +18,12 @@
             <li>
                 <div class="liBox">纪念日</div>
             </li>
-            <li v-for="item2 in kind" :key="item2">
-                <div class="liBox">{{item2.name}}</div>
+            <li v-for="item2 in kind" :key="item2.id">
+                <div class="liBox">{{item2.name}}
+                    <div :class="{delBox:delBoxShow}" @click="deleteKind2(item2.id,item2.name)">
+                        <div></div>
+                    </div>
+                </div>
             </li>
             <li>
                 <div class="liBox" @click="addKind">+</div>
@@ -52,10 +56,12 @@ export default {
         return{
             kind:[
                     ],
+            nextKindId: 2,
             addKindShow:false,
             // inputValue:{name:''},
             // inputArr:[]
-            inputValue:''
+            inputValue:'',
+            delBoxShow:false
             }
     },
     methods:{
@@ -66,7 +72,19 @@ export default {
             this.addKindShow=true;
          },
          deleteKind(){
-
+            this.delBoxShow=true
+         },
+         deleteKind2(idd,name){
+            console.log('要删除倒数日分类啦')
+            var index=null
+            index=this.kind.findIndex(item2=>{
+                if(item2.id===idd){
+                    name=item2.name
+                    return true
+                }
+            })
+            console.log("id=" + idd + ",数组的索引为" + index, "删除了" + name);
+            this.kind.splice(index,1)
          },
          addBook(){
             this.addKindShow=false;
@@ -74,7 +92,8 @@ export default {
             // this.inputArr.push(this.inputValue)
             // this.kind.push(this.inputArr[0])
             this.kind.push({
-                name:this.inputValue
+                name:this.inputValue,
+                id:this.nextKindId++,
             })
             this.inputValue="";
             console.log(this.kind);
@@ -156,6 +175,24 @@ export default {
     display: flex;
     align-items: center;
     justify-content:center;
+}
+.delBox{
+    width: 3.5vw;
+    height: 3.5vw;
+    background-color: rgb(53, 162, 189);
+    border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -7vh;
+    margin-left: 9vw;
+    position: absolute;
+}
+.delBox div{
+    width: 3.5vw;
+    height: 1vw;
+    background-color: white;
 }
 .addKindBox{
     width:70vw;
