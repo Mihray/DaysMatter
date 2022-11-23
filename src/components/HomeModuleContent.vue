@@ -38,8 +38,8 @@ data(){
             console.log('ClickEventlist:'+this.ClickEventlist)
             console.log('ClickEventlist的属性:'+this.ClickEventlist.name)
         },
-        delList(){
-            this.$emit('delList',)
+        delList(param3,param5){
+            this.$emit('delList',param3,param5)
         }
     }
 }

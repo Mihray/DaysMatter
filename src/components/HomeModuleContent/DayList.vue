@@ -1,11 +1,11 @@
 <template>
     <div class="dayList" @touchstart="touchstartList" @touchend="touchendList" @touchmove="touchmoveList">
         <ul :class="{dayListNew:!(TileButVar)}">
-            <li v-for="item in eventList" :key="item" @click="ShowInfo($emit('ShowInfo',item))" 
-            @touchstart="touchstartDel" @touchend="touchendDel" 
+            <li v-for="item in eventList" :key="item.id" @click="ShowInfo($emit('ShowInfo',item))" 
+            @touchstart="touchstartDel" @touchend="touchendDel(item.id)" 
             :class="{overHead:item.overHeadVar}">{{item.name}}
-                <ul class="deletaBox" v-if="delShow">
-                        <li @click="delList">删除</li>
+                <ul class="deletaBox" v-if="item.delShow">
+                        <li @click="delList(item.id,item.name)">删除</li>
                         <li>置顶</li>
                 </ul>
                 <div>{{item.days}}天</div>
@@ -40,7 +40,7 @@ export default {
             DelStartT1:'',
             DelEndT2:'',
             DelTime:'',
-            delShow:[],
+            // delShow:false,
             }
          },
          methods:{
@@ -83,16 +83,42 @@ export default {
          touchstartDel(){
             this.DelStartT1=(new Date()).valueOf()
          },
-         touchendDel(){
+         touchendDel(id){
             this.DelEndT2=(new Date()).valueOf()
             this.DelTime=this.DelEndT2-this.DelStartT1
             if(this.DelTime>200){
                 console.log('长按时间是：'+this.DelTime)
-                this.delShow=true
+
+                //如果传过来的id等于检测出来的id，findIndex返回索引
+                var index=null;
+                index=this.eventList.findIndex(item=>{
+                    if(item.id===id){
+                        return true
+                    }
+                })
+                //让此索引的对象的属性变true
+                this.eventList[index].delShow=true
             }
          },
-         delList(){
-            this.$emit('delList')
+        //  delShow(id){
+        //     var index=null
+        //     index=this.eventList.findIndex(item=>{
+        //         if(item.id===id){
+        //             return true
+        //         }
+        //     })
+        //     console.log('index:'+index)
+        //     return true
+        //  },
+         delList(id,name){
+            // var index=null;
+            const index=this.eventList.findIndex(item=>{
+                if(item.id===id){
+                    name=item.name
+                    return true
+                }
+            })
+            this.$emit('delList',index,name)
          }
 }
 }

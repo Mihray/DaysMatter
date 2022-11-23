@@ -71,9 +71,11 @@ export default {
                 name:'',
                 date:'',
                 kindVar:'',
-                overHeadVar:false,
+                overHeadVar:true,
                 repititionVar:'',
                 days:'',
+                //显示删除操作的属性
+                delShow:false
             },
         }
     },

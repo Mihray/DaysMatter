@@ -134,17 +134,11 @@ export default {
         console.log('纪念日：'+this.memorialDayAmount)
       }
     },
-    delList(id,name){
+    delList(param6,param7){
       console.log('App接受删除信号成功')
-      var index=null
-      index=this.eventApp.findIndex(item=>{
-        if(item.id==id){
-          name=item.name
-          return true
-        }
-      })
-      console.log("id=" + id + ",数组的索引为" + index, "删除了" + name);
-      this.eventApp.splice(index,1)
+      this.eventApp.splice(param6,1)
+      console.log("数组的索引为" + param6, "删除了" + param7);
+      
     },
     guanliClick(){
       this.addKind=true;
