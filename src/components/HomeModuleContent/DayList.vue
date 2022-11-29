@@ -1,12 +1,12 @@
 <template>
     <div class="dayList" @touchstart="touchstartList" @touchend="touchendList" @touchmove="touchmoveList">
-        <ul :class="{dayListNew:!(TileButVar)}">
+        <ul :class="{dayListNew:!(TileButVar)}" @click="cancelDel">
             <li v-for="item in eventList" :key="item.id" @click="ShowInfo($emit('ShowInfo',item))" 
             @touchstart="touchstartDel" @touchend="touchendDel(item.id)" 
             :class="{overHead:item.overHeadVar}">{{item.name}}
                 <ul class="deletaBox" v-if="item.delShow">
                         <li @click="delList(item.id,item.name)">删除</li>
-                        <li>置顶</li>
+                        <li @click="overHead(item.id,item.name)">置顶</li>
                 </ul>
                 <div>{{item.days}}天</div>
             </li>
@@ -100,6 +100,21 @@ export default {
                 this.eventList[index].delShow=true
             }
          },
+
+
+        //  cancelDel(){
+        //     var index=null;
+        //         index=this.eventList.findIndex(item=>{
+        //             if(item.id===id){
+        //                 return true
+        //             }
+        //         })
+        //         //让此索引的对象的属性变true
+        //         this.eventList[index].delShow=false
+        //  },
+
+
+
         //  delShow(id){
         //     var index=null
         //     index=this.eventList.findIndex(item=>{
@@ -119,6 +134,15 @@ export default {
                 }
             })
             this.$emit('delList',index,name)
+         },
+         overHead(id){
+            var index=null;
+                index=this.eventList.findIndex(item=>{
+                    if(item.id===id){
+                        return true
+                    }
+                })
+                this.eventList[index].overHeadVar=true
          }
 }
 }
